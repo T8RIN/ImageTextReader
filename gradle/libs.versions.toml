@@ -1,0 +1,23 @@
+[versions]
+libVersion = "1.0.0"
+
+agp = "8.4.0"
+kotlin = "1.9.0"
+coreKtx = "1.13.1"
+appcompat = "1.6.1"
+tesseract = "4.7.0"
+
+hilt = "2.51.1"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+tesseract = { module = "cz.adaptech.tesseract4android:tesseract4android-openmp", version.ref = "tesseract" }
+hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-gradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
+dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+
+[plugins]
+android-library = { id = "com.android.library", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
