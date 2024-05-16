@@ -138,7 +138,7 @@ And __[follow](https://github.com/T8RIN)__ me for my next creations! 🤩
 
 ## License
 ```xml
-Designed and developed by 2023 T8RIN
+Designed and developed by 2024 T8RIN
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
