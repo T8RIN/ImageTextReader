@@ -53,22 +53,83 @@ dependencies {
 
 ```kotlin
 // Use injection through dagger
-
 @Inject
 lateinit var imageTextReader: ImageTextReader<Bitmap>
 
-// Or in ViewModel
-
+// Or inject in ViewModel
 @HiltViewModel
 class ExampleViewModel @Inject constructor(
   private val imageTextReader: ImageTextReader<Bitmap>
 ): ViewModel()
 
-//Or obtain new instance passing application context
-
+// Or obtain new instance passing application context
 val imageTextReader: ImageTextReader<Bitmap> = ImageTextReader(context)
 
-//When you have ImageTextReader instance use it as shown below
+/* When you have ImageTextReader instance use it as shown below */
+
+// First get available languages list
+val recognitionType: RecognitionType = RecognitionType.Standard // Also available Best and Fast models
+val languages: List<OCRLanguage> = imageTextReader.getLanguages(recognitionType)
+
+// Or get OCRLanguage by code, for example `en`
+val language: OCRLanguage = imageTextReader.getLanguageForCode("en")
+
+// Select needed languages
+val languageCode = selectedLanguages.joinToString("+") { it.code } // selectedLanguages is your needed OCRLanguage instances
+
+// Or with single language
+val languageCode = language.code
+
+// Set some parameters
+val segmentationMode: SegmentationMode = SegmentationMode.PSM_AUTO_OSD
+val ocrEngineMode: OcrEngineMode = OcrEngineMode.DEFAULT
+
+imageTextReader.getTextFromImage(
+    type = recognitionType,
+    languageCode = languageCode,
+    segmentationMode = segmentationMode,
+    image = bitmap,
+    ocrEngineMode = ocrEngineMode,
+    onProgress = { progress ->
+       // Get recognition progress in percents
+    }
+).also { result ->
+    when (result) {
+        is TextRecognitionResult.Error -> {
+            val throeable: Throwable = result.throwable
+        }
+
+        is TextRecognitionResult.NoData -> {
+            val downloadData: List<DownloadData> = result.data
+        }
+
+        is TextRecognitionResult.Success -> {
+            val text: String = result.data
+        }
+    }
+}
+
+// When you have downloadData you can download them as shown below
+val isDownloadSuccessfully: Boolean = imageTextReader.downloadTrainingData(
+    type = recognitionType,
+    languageCode = downloadData.joinToString(separator = "+") { it.languageCode },
+    onProgress = { percentage, totalContentSize ->
+        // Get current download progress and total size of model
+    }
+)
+
+// Also you can check if some language model exists for selected recognition type
+fun isLanguageDataExists(
+    type: RecognitionType,
+    languageCode: String
+): Boolean
+
+// Or delete model that stored in memory
+suspend fun deleteLanguage(
+    language: OCRLanguage,
+    types: List<RecognitionType>
+)
+
 ```
 
 ## Find this repository useful? :heart:
