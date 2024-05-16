@@ -35,7 +35,7 @@ repositories {
   maven { setUrl("https://jitpack.io") } // Add jitpack
 }
 dependencies {
-  implementation("com.github.t8rin:ImageTextReader:LATEST_VERSION") // Replace "LATEST_VERSION" with preferrend version tag
+  implementation("com.github.T8RIN:ImageTextReader:LATEST_VERSION") // Replace "LATEST_VERSION" with preferrend version tag
 }
 ```
 
@@ -45,7 +45,7 @@ repositories {
   maven { url 'https://jitpack.io' } // Add jitpack
 }
 dependencies {
-  implementation 'com.github.t8rin:ImageTextReader:LATEST_VERSION' // Replace "LATEST_VERSION" with preferrend version tag
+  implementation 'com.github.T8RIN:ImageTextReader:LATEST_VERSION' // Replace "LATEST_VERSION" with preferrend version tag
 }
 ```
 
