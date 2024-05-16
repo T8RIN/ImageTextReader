@@ -29,7 +29,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal interface RecognizeTextModule {
+internal interface ImageTextReaderModule {
 
     @Singleton
     @Binds

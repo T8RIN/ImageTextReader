@@ -22,8 +22,8 @@ interface ImageTextReader<Image> {
     suspend fun getTextFromImage(
         type: RecognitionType,
         languageCode: String,
-        segmentationMode: SegmentationMode,
-        ocrEngineMode: OcrEngineMode,
+        segmentationMode: SegmentationMode = SegmentationMode.PSM_AUTO_OSD,
+        ocrEngineMode: OcrEngineMode = OcrEngineMode.DEFAULT,
         image: Image?,
         onProgress: (Int) -> Unit
     ): TextRecognitionResult
